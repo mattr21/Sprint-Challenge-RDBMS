@@ -42,7 +42,7 @@ router.get('/:id', async (req, res) => {
         project['actions'] = actions;
         res.status(200).json(project);
     } catch (error) {
-        res.status(500).json(error);
+        res.status(500).json(error); 
     }
 });
 
