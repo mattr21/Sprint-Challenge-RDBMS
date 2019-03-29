@@ -28,5 +28,22 @@ router.post('/', async (req, res) => {
     }
 });
 
+// list specific project and its actions
+router.get('/:id', async (req, res) => {
+    try {
+        const project = await db('projects')
+           .where({id: req.params.id})
+           .first();
+
+        const actions = await db('actions')
+            .select(['actions.id','actions.description','actions.notes','actions.completed'])
+            .where({project_id: req.params.id})
+
+        project['actions'] = actions;
+        res.status(200).json(project);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
 
 module.exports = router;

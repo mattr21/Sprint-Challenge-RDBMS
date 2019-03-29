@@ -12,7 +12,7 @@ const knexConfig = {
 
 const db = knex(knexConfig);
 
-// add projects
+// add actions
 router.post('/', async (req, res) => {
     try {
         const [id] = await db('actions')
